@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>恋ダンスマスター</title>
+  <script defer src="script.js"></script>
+  <!-- Load TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <!-- Load Posenet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+  <link rel="stylesheet" href="stylesheet.css">
+
+</head>
+<body>
+    <div align="center" id="disp">
+      <h1 >恋ダンス　マスター</h1>
+    </div>
+    <div class="main">
+
+    <!-- 動画-->
+      <div class="card1">
+        <video id="video1" width="560" height="315" src="images/video.mp4" style="position:absolute"></video>
+        <!-- <video id="video1" width="560" height="315" src="https://www.dropbox.com/s/wtepyoi2d68iisw/koidance.mp4" style="position:absolute"></video>
+        <canvas id="canvas1" width="560" height="315" style="position:absolute"></canvas> -->
+      </div>
+
+    <!-- ウェブカメラ -->
+      <div class="card2">
+        <video id="video2" width="500" height="315" autoplay muted　style="position:absolute">　</video>
+        <canvas id="canvas2" width="500" height="315" style="position:absolute"></canvas>
+      </div>
+    </div>
+  <div class="card3"> 
+    <div id="text-button"><p id="text">クリック</p></div>
+  </div>
+
+</body>
+</html>
