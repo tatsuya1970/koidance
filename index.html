@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>恋ダンスマスター</title>
+  <title>恋ダンス 練習システム</title>
   <script defer src="script.js"></script>
   <!-- Load TensorFlow.js -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
@@ -16,33 +16,25 @@
     
 <h1 >恋ダンス 練習システム</h1>
 
-<div id="good"></div>
 <div id="score"></div>
+<div id="good"></div>
 
 <div class="container">
 
     <!-- 動画-->
-      <div class="card1">
-        <!-- <img id="video1" width="560" height="315" src="images/man.png" style="position:absolute"></video> -->
-        
+      <div class="left"> 
         <video class="video1" id="video1" width="560" height="315" src="images/video.mp4" style="position:absolute"></video>
-        <!-- <video id="video1" width="560" height="315" src="https://temp-tatsuya.s3-ap-northeast-1.amazonaws.com/koidance.mp4" style="position:absolute"></video>  -->
         <canvas class="canvas1" id="canvas1" width="560" height="315" style="position:absolute"></canvas> 
       </div>
 
     <!-- ウェブカメラ -->
-      <div class="card2">
+      <div class="right">
         <video id="video2" width="560" height="315" autoplay muted　style="position:absolute">　</video>
         <canvas id="canvas2" width="560" height="315" style="position:absolute"></canvas>
-      </div>
-    
+      </div> 
     </div>
 
-    <!-- <div id="text-button"><p id="text">クリック</p></div> -->
-
-    <div id="text-button" align="center"><button>クリック</button></div>
+    <div id="text-button" align="center"><button>START</button></div>
   
-  
-
 </body>
 </html>

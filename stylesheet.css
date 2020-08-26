@@ -22,14 +22,14 @@
 
   }
 
-  .card1 {
+  .left {
     width:600px;
     float: left;
     padding: 10px 10px;
 
   }
 
-  .card2 {
+  .right {
     width:600px;
     float: right;
     padding: 10px 10px;

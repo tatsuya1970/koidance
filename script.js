@@ -3,9 +3,8 @@ const minPartConfidence = 0.2;
 const color1 = 'aqua';
 const color2 = 'red';
 const lineWidth = 3;
-const maxAllowError = 30;
+const maxAllowError = 50; //許される最小誤差
 
-// const video = document.getElementById('cat');
 const video1 = document.getElementById('video1');
 const canvas1 = document.getElementById('canvas1');
 const contentWidth1 = canvas1.width;
@@ -21,7 +20,7 @@ const ctx2 = canvas2.getContext('2d');
 let correct_pose ;
 let user_pose;
 let error;
-let score = 0;
+let score;
 
 //ウェブカメラ作動
 navigator.getUserMedia(
@@ -30,12 +29,15 @@ navigator.getUserMedia(
   err => console.error(err)
 )
 
-//ボタンをクリックするとビデオが流れる
+//ボタンをクリックするとスタート（ビデオが流れる）
 document.getElementById("text-button").onclick = function() {
-  
+score = 0;
+target_score = document.getElementById("score");
+target_score.innerHTML = "SCORE: "+String(score);
+target = document.getElementById("good");
+target.innerHTML = "　";
   video1.play();
 };
-
 
 //ビデオが流れてる間のループ
 video1.addEventListener('play', () => {
@@ -51,7 +53,6 @@ video1.addEventListener('play', () => {
     }).then(function(poses){
       console.log("左側",poses);
       ctx1.clearRect(0, 0, contentWidth1,contentHeight1);
-  
       poses.forEach(({ keypoints }) => {
         drawKeypoints(keypoints, minPartConfidence, ctx1, color1);
         drawSkeleton(keypoints, minPartConfidence, ctx1, color1);
@@ -67,29 +68,23 @@ video1.addEventListener('play', () => {
       });
       return pose;
     }).then(function(pose){
-      console.log("右側",pose);
-    
+      // console.log("右側",pose);
       ctx2.clearRect(0, 0, contentWidth2,contentHeight2);
-
       drawKeypoints(pose.keypoints, minPartConfidence, ctx2, color2);
-      drawSkeleton(pose.keypoints, minPartConfidence, ctx2, color2);
-  
+      drawSkeleton(pose.keypoints, minPartConfidence, ctx2, color2);  
       user_pose = pose;
     })
      
     error = calcAngleError(correct_pose, user_pose);
-    //console.log("得点",error);
     target = document.getElementById("good");
     
-
     if(error <= maxAllowError){ 
       target.innerHTML = "GOOD!";
       score = score + 1;
       target_score = document.getElementById("score");
-      target_score.innerHTML = score;
+      target_score.innerHTML = "SCORE: "+String(score);
 
-
-    }else{target.innerHTML = "BAD!";}
+    }else{target.innerHTML = "　";}
 
   }, 500)
 })
@@ -109,11 +104,9 @@ function drawPoint(ctx, y, x, r, color) {
 function drawKeypoints(keypoints, minConfidence, ctx, color,scale = 1) {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i];
-
     if (keypoint.score < minConfidence) {
       continue;
     }
-
     const {y, x} = keypoint.position;
     drawPoint(ctx, y * scale, x * scale, 3, color);
   }
@@ -138,10 +131,7 @@ function drawSkeleton(keypoints, minConfidence, ctx, color,scale = 1) {
   });
 }
 
-
-
-//完全にマネです。
-
+//以下こちらをコピペ　https://qiita.com/daiking1756/items/ba833e51b30421e760b5
 function calcAngleError(correct_pose, user_pose){
   let error = 0;
 
