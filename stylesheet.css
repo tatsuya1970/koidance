@@ -1,29 +1,39 @@
-body {
+
+  body {
     background-color:white;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
-  .main{
-    width:1200px;
-    height: 400px;
+  .container{
+    display: flex;
+    
   }
+  
+  #good{
+    text-align: center;
+    font-size: 25px;    
+    color: red;
+  }
+  #score{
+    text-align: center;
+    font-size: 25px;    
+    color: blue;
+
+  }
+
   .card1 {
     width:600px;
     float: left;
     padding: 10px 10px;
-    justify-content: center;
+
   }
+
   .card2 {
     width:600px;
     float: right;
     padding: 10px 10px;
-    justify-content: center;
     transform: scale(-1, 1); 
-  }
-  .card3 {
-    margin: 20px;
-    text-align: center;
   }
 
   h1 {
